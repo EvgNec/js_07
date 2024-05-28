@@ -27,3 +27,5 @@ document.addEventListener(
     debouncedOutput.textContent = eventCounter.debounced;
   }, 300)
 );
+
+
