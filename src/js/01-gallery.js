@@ -23,12 +23,9 @@ listEl.addEventListener("click", selectImage);
 function selectImage(e) {
   e.preventDefault();
   if (e.target.nodeName !== "IMG") {
-    console.log("e.target", e.target);
     return;
   }
-  console.log("e.target", e.target);
   const selectImg = e.target.dataset.source;
-  console.log("selectImg ", selectImg);
   basicLightbox
     .create(
       `<img width="1400" height="900" src="${selectImg}">`
