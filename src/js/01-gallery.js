@@ -21,6 +21,7 @@ listEl.insertAdjacentHTML("beforeend", elements);
 
 listEl.addEventListener("click", selectImage);
 function selectImage(e) {
+  e.preventDefault();
   if (e.target.nodeName !== "IMG") {
     console.log("e.target", e.target);
     return;
@@ -30,11 +31,15 @@ function selectImage(e) {
   console.log("selectImg ", selectImg);
   basicLightbox
     .create(
-      `
-      <div class="modal">
-		<img width="1400" height="900" src="${selectImg}">
-        </div>`
+      `<img width="1400" height="900" src="${selectImg}">`
     )
-      .show();
-    basicLightbox.close();
+    .show();
+  window.addEventListener("keydown", onCloseModalClick);
+}
+function onCloseModalClick(e) {
+  const openInstance = document.querySelector(".basicLightbox");
+  if (e.code === "Escape") {
+    openInstance.remove();
+    window.removeEventListener("keydown", onCloseModalClick);
+  }
 }
